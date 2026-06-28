@@ -1,0 +1,16 @@
+node_modules
+dist
+dist-ssr
+.runtime
+.license
+test-results
+server/data
+server/backups
+src-tauri
+logs
+*.log
+*.local
+.env
+.env.*
+!.env.example
+!.env.docker.example

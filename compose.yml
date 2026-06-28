@@ -1,0 +1,47 @@
+name: arbeitszeitbuero
+
+services:
+  app:
+    build:
+      context: .
+    image: arbeitszeitbuero:latest
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 4177
+      TIME_TRACKER_DATA: /data/time-tracker.sqlite
+      TIME_TRACKER_BACKUP_DIR: /data/backups
+      APP_BASE_URL: ${APP_BASE_URL:?Set APP_BASE_URL in .env.docker, for example https://time.example.com}
+      INITIAL_ADMIN_NAME: ${INITIAL_ADMIN_NAME:-}
+      INITIAL_ADMIN_EMAIL: ${INITIAL_ADMIN_EMAIL:-}
+      INITIAL_ADMIN_PASSWORD: ${INITIAL_ADMIN_PASSWORD:-}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_SECURE: ${SMTP_SECURE:-false}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_FROM: ${SMTP_FROM:-}
+    volumes:
+      - time_tracker_data:/data
+    expose:
+      - "4177"
+
+  caddy:
+    image: caddy:2.8-alpine
+    restart: unless-stopped
+    depends_on:
+      - app
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      APP_HOST: ${APP_HOST:?Set APP_HOST in .env.docker, for example time.example.com}
+    volumes:
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+
+volumes:
+  time_tracker_data:
+  caddy_data:
+  caddy_config:

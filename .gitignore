@@ -1,0 +1,46 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+dist
+dist-ssr
+test-results/
+playwright-report/
+*.local
+.env
+.env.*
+!.env.example
+!.env.docker.example
+.runtime/
+.license/
+server/data/*.json
+server/data/*.sqlite
+server/data/*.sqlite-*
+server/backups/*.sqlite
+
+# Customer-specific handoff files. Keep these local/private, not in a public GitHub repo.
+.env.incoretex.example
+compose.incoretex.yml
+docs/incoretex-handoff.md
+docs/pi-main-server.md
+docs/private-*.md
+docs/local-*.md
+licenses/*.json
+scripts/prepare-incoretex-handoff.ts
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

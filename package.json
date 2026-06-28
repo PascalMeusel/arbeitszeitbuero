@@ -1,0 +1,46 @@
+{
+  "name": "arbeitszeitbuero",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently -k -n api,web \"npm:server:dev\" \"npm:web:dev\"",
+    "web:dev": "vite --host 0.0.0.0 --port 5173",
+    "server:dev": "tsx watch server/index.ts",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "test:browsers": "playwright test",
+    "preview": "vite preview --host 0.0.0.0",
+    "start": "tsx server/index.ts",
+    "license:keypair": "node scripts/create-license-keypair.mjs",
+    "license:generate": "node scripts/generate-license.mjs",
+    "desktop:dev": "tauri dev",
+    "desktop:build": "tauri build"
+  },
+  "dependencies": {
+    "cors": "^2.8.6",
+    "csv-parse": "^7.0.0",
+    "date-holidays": "^3.30.2",
+    "express": "^5.2.1",
+    "lucide-react": "^1.21.0",
+    "nodemailer": "^9.0.1",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tsx": "^4.22.4"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.61.1",
+    "@tauri-apps/cli": "^2.11.3",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.13.2",
+    "@types/nodemailer": "^8.0.1",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.2",
+    "concurrently": "^10.0.3",
+    "oxlint": "^1.69.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.1.0"
+  }
+}
